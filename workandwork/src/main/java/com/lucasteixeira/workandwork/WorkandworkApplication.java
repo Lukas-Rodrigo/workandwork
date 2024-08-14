@@ -1,53 +1,13 @@
 package com.lucasteixeira.workandwork;
 
-import com.lucasteixeira.workandwork.domain.Chamado;
-import com.lucasteixeira.workandwork.domain.Cliente;
-import com.lucasteixeira.workandwork.domain.Tecnico;
-import com.lucasteixeira.workandwork.enums.Perfil;
-import com.lucasteixeira.workandwork.enums.Prioridade;
-import com.lucasteixeira.workandwork.enums.Status;
-import com.lucasteixeira.workandwork.repositories.ChamadoRepository;
-import com.lucasteixeira.workandwork.repositories.ClienteaRepository;
-import com.lucasteixeira.workandwork.repositories.TecnicoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.Arrays;
-
 @SpringBootApplication
-public class WorkandworkApplication implements CommandLineRunner {
+public class WorkandworkApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(WorkandworkApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(WorkandworkApplication.class, args);
+    }
 
-	@Autowired
-	private TecnicoRepository tecnicoRepository;
-
-	@Autowired
-	private ClienteaRepository clienteaRepository;
-
-	@Autowired
-	private ChamadoRepository chamadoRepository;
-
-
-	@Override
-	public void run(String... args) throws Exception {
-
-		Tecnico tec1 = new Tecnico(null, "Valdir Cezar", "32339532086", "valdir@gmail.com", "123");
-		tec1.addPerfil(Perfil.TECNICO);
-
-		Cliente cli1 = new Cliente(null, "Linus Torvalds", "35246360636", "linus@gmail.com", "123");
-		cli1.addPerfil(Perfil.CLIENTE);
-
-		Chamado c1 = new Chamado(null, Prioridade.MEDIA, Status.ANDAMENTO, "Chamado 01", "Primeiro chamado", cli1, tec1);
-
-		tecnicoRepository.saveAll(Arrays.asList(tec1));
-
-		clienteaRepository.saveAll(Arrays.asList(cli1));
-
-		chamadoRepository.saveAll(Arrays.asList(c1));
-	}
 }
