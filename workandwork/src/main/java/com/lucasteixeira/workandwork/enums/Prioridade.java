@@ -1,9 +1,9 @@
 package com.lucasteixeira.workandwork.enums;
 
 public enum Prioridade {
-    BAIXA(0, "BAIXA"),
-    MEDIA(1, "MEDIA"),
-    ALTA(2,"ALTA");
+    BAIXA(3, "BAIXA"),
+    MEDIA(4, "MEDIA"),
+    ALTA(5,"ALTA");
 
     private Integer code;
     private String descricao;
