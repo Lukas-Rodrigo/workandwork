@@ -1,6 +1,7 @@
 package com.lucasteixeira.workandwork.Resource;
 
 import com.lucasteixeira.workandwork.domain.Tecnico;
+import com.lucasteixeira.workandwork.domain.dtos.TecnicoDTO;
 import com.lucasteixeira.workandwork.services.TecnicoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +18,9 @@ public class TecnicoResource {
     private TecnicoService tecnicoService;
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Tecnico> findById(@PathVariable Integer id) {
-        return ResponseEntity.ok().body(tecnicoService.findById(id));
+    public ResponseEntity<TecnicoDTO> findById(@PathVariable Integer id) {
+        Tecnico tecnicoobj = tecnicoService.findById(id);
+        return ResponseEntity.ok().body(new TecnicoDTO(tecnicoobj));
     }
 }
 
