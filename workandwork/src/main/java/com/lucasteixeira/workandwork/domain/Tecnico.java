@@ -20,4 +20,6 @@ public class Tecnico extends Pessoa{
         super(id, nome, cpf, email, senha);
         addPerfil(Perfil.CLIENTE);
     }
+
+
 }
