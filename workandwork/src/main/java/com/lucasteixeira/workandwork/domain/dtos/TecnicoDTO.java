@@ -3,6 +3,7 @@ package com.lucasteixeira.workandwork.domain.dtos;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.lucasteixeira.workandwork.domain.Tecnico;
 import com.lucasteixeira.workandwork.enums.Perfil;
+import jakarta.validation.constraints.NotNull;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -12,9 +13,13 @@ import java.util.stream.Collectors;
 
 public class TecnicoDTO implements Serializable {
     protected Integer id;
+    @NotNull(message = "O campo NOME é requerido")
     protected String nome;
+    @NotNull(message = "O campo CPF é requerido")
     protected String cpf;
+    @NotNull(message = "O campo E-MAIL é requerido")
     protected String email;
+    @NotNull(message = "O campo SENHA é requerido")
     protected String senha;
     protected Set<Integer> perfils = new HashSet();
 
