@@ -9,6 +9,7 @@ import com.lucasteixeira.workandwork.services.exception.DataIntegrityViolationEx
 import com.lucasteixeira.workandwork.services.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -43,6 +44,14 @@ public class TecnicoService {
         return tecnicoRepository.save(novoTecnico);
     }
 
+    public Tecnico update(Integer id, TecnicoDTO dadosTecnico) {
+        dadosTecnico.setId(id);
+        Tecnico tecnicoAntigo = findById(id);
+        validaCpfEEmail(dadosTecnico);
+        tecnicoAntigo = new Tecnico(dadosTecnico);
+        return tecnicoRepository.save(tecnicoAntigo);
+    }
+
     private void validaCpfEEmail(TecnicoDTO tecnicoDTO) {
         Optional<Pessoa> pessoa = pessoaRepository.findByCpf(tecnicoDTO.getCpf());
 
@@ -54,9 +63,6 @@ public class TecnicoService {
         if (pessoa.isPresent() && pessoa.get().getId() != tecnicoDTO.getId()) {
             throw new DataIntegrityViolationException("E-mail já cadastrado");
         }
-
-
-
 
     }
 }
