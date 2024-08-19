@@ -22,7 +22,7 @@ public class TecnicoDTO implements Serializable {
     protected LocalDate dataCriacao;
 
     public TecnicoDTO() {
-
+        addPerfil(Perfil.CLIENTE);
     }
 
     public TecnicoDTO(Tecnico tecnico) {

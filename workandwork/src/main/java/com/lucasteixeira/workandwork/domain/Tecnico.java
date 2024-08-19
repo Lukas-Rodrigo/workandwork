@@ -1,11 +1,14 @@
 package com.lucasteixeira.workandwork.domain;
 
+import com.lucasteixeira.workandwork.domain.dtos.TecnicoDTO;
 import com.lucasteixeira.workandwork.enums.Perfil;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
 @Entity
 public class Tecnico extends Pessoa{
 
@@ -22,4 +25,13 @@ public class Tecnico extends Pessoa{
     }
 
 
+    public Tecnico(TecnicoDTO tecnico) {
+        this.id = tecnico.getId();
+        this.nome = tecnico.getNome();
+        this.cpf = tecnico.getCpf();
+        this.email = tecnico.getEmail();
+        this.senha = tecnico.getSenha();
+        this.perfils = tecnico.getPerfils().stream().map(x -> x.getCode()).collect(Collectors.toSet());
+
+    }
 }

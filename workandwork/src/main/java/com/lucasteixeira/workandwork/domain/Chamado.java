@@ -23,7 +23,6 @@ public class Chamado implements Serializable {
 
     private Integer prioridade;
     private Integer status;
-
     private String titulo;
     private String observacoes;
 
