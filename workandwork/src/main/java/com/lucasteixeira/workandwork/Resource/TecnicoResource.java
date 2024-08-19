@@ -45,5 +45,13 @@ public class TecnicoResource {
         Tecnico tecnico = tecnicoService.update(id, dadosTecnico);
         return ResponseEntity.ok().body(new TecnicoDTO(tecnico));
     }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
+        tecnicoService.delete(id);
+        return ResponseEntity.noContent().build();
+
+    }
+
 }
 

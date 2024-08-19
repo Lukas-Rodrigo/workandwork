@@ -34,4 +34,9 @@ public class Tecnico extends Pessoa{
         this.perfils = tecnico.getPerfils().stream().map(x -> x.getCode()).collect(Collectors.toSet());
 
     }
+
+    public List<Chamado> getChamados() {
+        return chamados;
+    }
+
 }
