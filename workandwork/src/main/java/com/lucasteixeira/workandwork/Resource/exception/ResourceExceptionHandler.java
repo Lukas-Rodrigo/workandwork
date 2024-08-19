@@ -1,5 +1,6 @@
 package com.lucasteixeira.workandwork.Resource.exception;
 
+import com.lucasteixeira.workandwork.services.exception.DataIntegrityViolationException;
 import com.lucasteixeira.workandwork.services.exception.ResourceNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,12 @@ public class ResourceExceptionHandler {
     public ResponseEntity<StandardError> resourceNotFound(ResourceNotFoundException e, HttpServletRequest request) {
         HttpStatus status = HttpStatus.NOT_FOUND;
         StandardError erro = new StandardError(Instant.now(),status.value(), "Recurso não encontrado", e.getMessage(), request.getRequestURI());
+        return  ResponseEntity.status(status).body(erro);
+    }
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<StandardError> dataIntegrityViolationException (DataIntegrityViolationException e, HttpServletRequest request) {
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        StandardError erro = new StandardError(Instant.now(),status.value(), "Violação de dados", e.getMessage(), request.getRequestURI());
         return  ResponseEntity.status(status).body(erro);
     }
 

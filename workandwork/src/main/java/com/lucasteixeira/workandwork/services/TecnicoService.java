@@ -1,10 +1,14 @@
 package com.lucasteixeira.workandwork.services;
 
+import com.lucasteixeira.workandwork.domain.Pessoa;
 import com.lucasteixeira.workandwork.domain.Tecnico;
 import com.lucasteixeira.workandwork.domain.dtos.TecnicoDTO;
+import com.lucasteixeira.workandwork.repositories.PessoaRepository;
 import com.lucasteixeira.workandwork.repositories.TecnicoRepository;
+import com.lucasteixeira.workandwork.services.exception.DataIntegrityViolationException;
 import com.lucasteixeira.workandwork.services.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +19,9 @@ public class TecnicoService {
 
     @Autowired
     private TecnicoRepository tecnicoRepository;
+
+    @Autowired
+    private PessoaRepository pessoaRepository;
 
     public Tecnico findById(Integer id) {
         Optional<Tecnico> tecnico = tecnicoRepository.findById(id);
@@ -30,8 +37,24 @@ public class TecnicoService {
     }
 
     public Tecnico create(TecnicoDTO tecnicoDTO) {
-        tecnicoDTO.setCpf(null);
+        tecnicoDTO.setId(null);
+        validaCpfEEmail(tecnicoDTO);
         Tecnico novoTecnico = new Tecnico(tecnicoDTO);
         return tecnicoRepository.save(novoTecnico);
+    }
+
+    private void validaCpfEEmail(TecnicoDTO tecnicoDTO) {
+        Optional<Pessoa> pessoa = pessoaRepository.findByCpf(tecnicoDTO.getCpf());
+
+        if (pessoa.isPresent() && pessoa.get().getId() != tecnicoDTO.getId()) {
+            throw new DataIntegrityViolationException("CPF já cadastrado no sistema");
+        }
+
+        pessoa = pessoaRepository.findByEmail(tecnicoDTO.getEmail());
+        if (pessoa.isPresent() && pessoa.get().getId() != tecnicoDTO.getId()) {
+            throw new DataIntegrityViolationException("E-mail já cadastrado");
+        }
+
+
     }
 }

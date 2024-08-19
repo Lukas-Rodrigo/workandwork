@@ -3,8 +3,6 @@ package com.lucasteixeira.workandwork.domain;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.lucasteixeira.workandwork.enums.Perfil;
 import jakarta.persistence.*;
-import org.springframework.cglib.core.Local;
-import org.springframework.stereotype.Controller;
 
 import java.io.Serializable;
 import java.time.LocalDate;
