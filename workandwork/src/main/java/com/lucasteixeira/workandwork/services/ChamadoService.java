@@ -6,6 +6,7 @@ import com.lucasteixeira.workandwork.services.exception.ResourceNotFoundExceptio
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -17,5 +18,9 @@ public class ChamadoService {
     public Chamado findById(Integer id) {
         Optional<Chamado> chamadoOptional = chamadoRepository.findById(id);
         return chamadoOptional.orElseThrow(() -> new ResourceNotFoundException("Chamado não encontrado"));
+    }
+
+    public List<Chamado> findAll() {
+        return chamadoRepository.findAll();
     }
 }
