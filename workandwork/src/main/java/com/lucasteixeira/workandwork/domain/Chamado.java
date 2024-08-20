@@ -1,6 +1,7 @@
 package com.lucasteixeira.workandwork.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.lucasteixeira.workandwork.domain.dtos.ChamadoDTO;
 import com.lucasteixeira.workandwork.enums.Prioridade;
 import com.lucasteixeira.workandwork.enums.Status;
 import jakarta.persistence.*;
@@ -43,6 +44,15 @@ public class Chamado implements Serializable {
         setStatus(status);
         this.titulo = titulo;
         this.observacoes = observacoes;
+        this.cliente = cliente;
+        this.tecnico = tecnico;
+    }
+
+    public Chamado(ChamadoDTO chamadoDTO, Cliente cliente, Tecnico tecnico) {
+        this.prioridade = chamadoDTO.getPrioridade().getCode();
+        this.status = chamadoDTO.getStatus().getCode();
+        this.titulo = chamadoDTO.getTitulo();
+        this.observacoes = chamadoDTO.getObservacoes();
         this.cliente = cliente;
         this.tecnico = tecnico;
     }

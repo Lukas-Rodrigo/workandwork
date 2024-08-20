@@ -23,8 +23,8 @@ public class ClienteService {
     private PessoaRepository pessoaRepository;
 
     public Cliente findById(Integer id) {
-        Optional<Cliente> Cliente = ClienteRepository.findById(id);
-        return Cliente.orElseThrow(() -> new ResourceNotFoundException("Resource not found"));
+        Optional<Cliente> cliente = ClienteRepository.findById(id);
+        return cliente.orElseThrow(() -> new ResourceNotFoundException("Resource not found"));
     }
 
     public List<Cliente> findAll() {

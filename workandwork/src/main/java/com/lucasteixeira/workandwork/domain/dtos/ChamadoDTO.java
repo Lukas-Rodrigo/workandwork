@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.lucasteixeira.workandwork.domain.Chamado;
 import com.lucasteixeira.workandwork.enums.Prioridade;
 import com.lucasteixeira.workandwork.enums.Status;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 
@@ -14,12 +15,25 @@ public class ChamadoDTO {
     private LocalDate dataAbertura = LocalDate.now();
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataFechamento;
+
+    @NotNull(message = "O campo PRIORIDADE é requerido")
     private Integer prioridade;
+
+    @NotNull(message = "O campo STATUS é requerido")
     private Integer status;
+
+    @NotNull(message = "O campo TITULO é requerido")
     private String titulo;
+
+    @NotNull(message = "O campo OBSERVAÇÕES é requerido")
     private String observacoes;
+
+    @NotNull(message = "O campo CLIENTE é requerido")
     private Integer cliente;
+
+    @NotNull(message = "O campo TÉCNICO é requerido")
     private Integer tecnico;
+
     private String nomeTecnico;
     private String nomeCliente;
 
