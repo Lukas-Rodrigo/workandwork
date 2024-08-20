@@ -31,10 +31,6 @@ public class ClienteService {
         return ClienteRepository.findAll();
     }
 
-    public Cliente criarCliente(Cliente Cliente) {
-        return ClienteRepository.save(Cliente);
-    }
-
     public Cliente create(ClienteDTO ClienteDTO) {
         ClienteDTO.setId(null);
         validaCpfEEmail(ClienteDTO);

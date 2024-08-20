@@ -1,50 +1,44 @@
-package com.lucasteixeira.workandwork.domain;
+package com.lucasteixeira.workandwork.domain.dtos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.lucasteixeira.workandwork.domain.Chamado;
 import com.lucasteixeira.workandwork.enums.Prioridade;
 import com.lucasteixeira.workandwork.enums.Status;
-import jakarta.persistence.*;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 
-@Entity
-public class Chamado implements Serializable {
+public class ChamadoDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataAbertura = LocalDate.now();
-
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataFechamento;
-
     private Integer prioridade;
     private Integer status;
     private String titulo;
     private String observacoes;
+    private Integer cliente;
+    private Integer tecnico;
+    private String nomeTecnico;
+    private String nomeCliente;
 
-    @ManyToOne
-    @JoinColumn(name = "tecnico_id")
-    private Cliente cliente;
-    @ManyToOne
-    @JoinColumn(name = "cliente_id")
-    private Tecnico tecnico;
-
-    public Chamado() {
+    public ChamadoDTO() {
 
     }
 
-    public Chamado(Integer id, Prioridade prioridade, Status status, String titulo, String observacoes, Tecnico tecnico, Cliente cliente) {
-        this.id = id;
-        setPrioridade(prioridade);
-        setStatus(status);
-        this.titulo = titulo;
-        this.observacoes = observacoes;
-        this.cliente = cliente;
-        this.tecnico = tecnico;
+    public ChamadoDTO(Chamado chamado) {
+        this.id = chamado.getId();
+        this.dataAbertura = chamado.getDataAbertura();
+        this.dataFechamento = chamado.getDataFechamento();
+        this.prioridade = chamado.getPrioridade().getCode();
+        this.status = chamado.getStatus().getCode();
+        this.titulo = chamado.getTitulo();
+        this.observacoes = chamado.getObservacoes();
+        this.tecnico = chamado.getTecnico().getId();
+        this.cliente = chamado.getCliente().getId();
+        this.nomeTecnico = chamado.getTecnico().getNome();
+        this.nomeCliente = chamado.getCliente().getNome();
     }
 
     public Integer getId() {
@@ -103,19 +97,35 @@ public class Chamado implements Serializable {
         this.observacoes = observacoes;
     }
 
-    public Cliente getCliente() {
+    public Integer getCliente() {
         return cliente;
     }
 
-    public void setCliente(Cliente cliente) {
+    public void setCliente(Integer cliente) {
         this.cliente = cliente;
     }
 
-    public Tecnico getTecnico() {
+    public Integer getTecnico() {
         return tecnico;
     }
 
-    public void setTecnico(Tecnico tecnico) {
+    public void setTecnico(Integer tecnico) {
         this.tecnico = tecnico;
+    }
+
+    public String getNomeTecnico() {
+        return nomeTecnico;
+    }
+
+    public void setNomeTecnico(String nomeTecnico) {
+        this.nomeTecnico = nomeTecnico;
+    }
+
+    public String getNomeCliente() {
+        return nomeCliente;
+    }
+
+    public void setNomeCliente(String nomeCliente) {
+        this.nomeCliente = nomeCliente;
     }
 }

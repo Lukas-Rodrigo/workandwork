@@ -1,5 +1,6 @@
 package com.lucasteixeira.workandwork.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.lucasteixeira.workandwork.domain.dtos.ClienteDTO;
 import com.lucasteixeira.workandwork.enums.Perfil;
 import jakarta.persistence.Entity;
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
 @Entity
 public class Cliente extends Pessoa {
 
+    @JsonIgnore
     @OneToMany(mappedBy = "cliente")
     List<Chamado> chamados = new ArrayList<>();
 

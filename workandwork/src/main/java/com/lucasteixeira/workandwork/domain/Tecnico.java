@@ -1,8 +1,10 @@
 package com.lucasteixeira.workandwork.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.lucasteixeira.workandwork.domain.dtos.TecnicoDTO;
 import com.lucasteixeira.workandwork.enums.Perfil;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 
 import java.util.ArrayList;
@@ -12,6 +14,7 @@ import java.util.stream.Collectors;
 @Entity
 public class Tecnico extends Pessoa{
 
+    @JsonIgnore
     @OneToMany(mappedBy = "tecnico")
     List<Chamado> chamados = new ArrayList<>();
 
