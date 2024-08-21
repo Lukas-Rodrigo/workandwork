@@ -49,6 +49,7 @@ public class Chamado implements Serializable {
     }
 
     public Chamado(ChamadoDTO chamadoDTO, Cliente cliente, Tecnico tecnico) {
+        this.id = chamadoDTO.getId();
         this.prioridade = chamadoDTO.getPrioridade().getCode();
         this.status = chamadoDTO.getStatus().getCode();
         this.titulo = chamadoDTO.getTitulo();

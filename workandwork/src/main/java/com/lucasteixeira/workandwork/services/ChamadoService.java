@@ -9,6 +9,7 @@ import com.lucasteixeira.workandwork.services.exception.ResourceNotFoundExceptio
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,9 +40,19 @@ public class ChamadoService {
 
     }
 
+    public Chamado update(Integer id, ChamadoDTO chamadoDTO) {
+        chamadoDTO.setId(id);
+        Chamado chamadoId = findById(id);
+        return chamadoRepository.save(novoChamado(chamadoDTO));
+    }
+
     private Chamado novoChamado(ChamadoDTO chamadoDTO) {
         Tecnico tecnicoId = tecnicoService.findById(chamadoDTO.getTecnico());
         Cliente clienteId = clienteService.findById(chamadoDTO.getCliente());
-        return new Chamado(chamadoDTO, clienteId, tecnicoId);
+        Chamado novoChamado = new Chamado(chamadoDTO, clienteId, tecnicoId);
+        if (chamadoDTO.getStatus().getCode().equals(2)) {
+            novoChamado.setDataFechamento(LocalDate.now());
+        }
+        return novoChamado;
     }
 }

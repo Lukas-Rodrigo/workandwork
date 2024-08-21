@@ -1,9 +1,9 @@
 package com.lucasteixeira.workandwork.enums;
 
 public enum Status {
-    ABERTO(3, "ABERTO"),
-    ANDAMENTO(4, "ANDAMENTO"),
-    ENCERRADO(5,"ENCERRADO");
+    ABERTO(0, "ABERTO"),
+    ANDAMENTO(1, "ANDAMENTO"),
+    ENCERRADO(2,"ENCERRADO");
 
     private Integer code;
     private String descricao;
