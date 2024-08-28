@@ -20,8 +20,15 @@ public class AuthorizationService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Pessoa pessoa = pessoaRepository.findByEmail(username).orElseThrow(() -> new RuntimeException("Email not found"));
-        return new User(pessoa.getEmail(), pessoa.getSenha(), pessoa.getPerfils().stream().map(x -> new SimpleGrantedAuthority(x.getDescricao())).collect(Collectors.toSet()));
+        Pessoa pessoa = pessoaRepository.findByEmail(username)
+                .orElseThrow(() -> new UsernameNotFoundException("Email not found: " + username));
 
+        return new User(
+                pessoa.getEmail(),
+                pessoa.getSenha(),
+                pessoa.getPerfils().stream()
+                        .map(perfil -> new SimpleGrantedAuthority(perfil.getDescricao()))
+                        .collect(Collectors.toSet())
+        );
     }
 }

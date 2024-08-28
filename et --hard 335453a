@@ -1,0 +1,26 @@
+[33m709fe6e[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m Implementação: CredenciaisDTO para trafegar dados de um usuario e chavePasse usando JWT;
+[33m335453a[m Implementação: classe UserDetailsServiceImpl conforme contrato Spring Security
+[33ma341e83[m Implementação: classe UserSS conforme contrato Spring Security
+[33m8f2b194[m Implementação: encodamento senhas de usuários
+[33mc01ad5e[m Implementado a classe SecurityConfig com configurações iniciais para Authenticação com JWT
+[33mf4b47c8[m Implementação update para a classe Chamado
+[33m5794cf8[m Endpoint POST para a classe Chamado
+[33m6066ba5[m EndPoint findAll para a classe Chamado
+[33m1d7907d[m FindById para a classe Chamado
+[33mb3e3647[m Implementação CRUD completo para Cliente
+[33m2533bdb[m Implementação método delete para tecnico
+[33md20b2d9[m Implementação método PUT para tecnico
+[33m49c3aa6[m Validação nos campos de criação de novo usuario
+[33m6dc26c2[m Exceção para CPF e EMAIL já cadastrados
+[33mbce81ce[m Endpoint post para a classe Tecnico
+[33m6be0511[m Padrão DTO para Tecnico
+[33m2724cac[m Merge remote-tracking branch 'origin/main'
+[33m875f855[m EndPoint findById com tratamento de exception
+[33mddd695b[m EndPoint findById para tecnico
+[33mdbd1225[m Adição perfil de teste
+[33m096bdc4[m Carga inicial da base de dados
+[33m205d76f[m Adição de repositories
+[33md2594ef[m Mapeamento JPA para classes de dominio
+[33m1782e02[m classes de dominio iniciadas
+[33m8d3288b[m Adição tipos enumerados
+[33maea890e[m primeiras configurações
