@@ -3,8 +3,8 @@ package com.lucasteixeira.workandwork.domain;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.lucasteixeira.workandwork.enums.Perfil;
 import jakarta.persistence.*;
+import org.springframework.security.core.userdetails.UserDetails;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Objects;
@@ -12,7 +12,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Entity
-public abstract class Pessoa implements Serializable {
+public abstract class Pessoa implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Integer id;
